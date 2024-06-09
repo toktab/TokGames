@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport", content="width=device-width, initial-scale=1.0">
+    <title>Snake</title>
+    <link rel="stylesheet" href="snake.css">
+    <script src="snake.js"></script>
+</head>
+
+<body>
+<button id="go-back-button">Go Back</button>
+<header>
+    <div class="user-info">
+        <div class="user-info-left">
+            <span id="user-name"></span>
+            <img id="user-photo" class="user-photo" src="" alt="User Photo">
+        </div>
+        <div id="user-score" style="color: yellow;"></div>
+    </div>
+    <div id="user-id"></div>
+</header>
+<h1>Snake</h1>
+<canvas id="board"></canvas>
+<div id="score-counter">Score: 0</div>
+<button id="restart-button" onclick="location.reload()">Restart</button>
+<div id="game-over-modal">
+    <h2>Game Over!</h2>
+    <p>Your score: <span id="final-score"></span></p>
+</div>
+</body>
+</html>

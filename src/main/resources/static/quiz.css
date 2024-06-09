@@ -239,3 +239,9 @@ header {
     font-size: 18px;
     color: #666;
 }
+#go-back-btn {
+    position: fixed;
+    bottom: 5px; /* Adjust the distance from the bottom */
+    right: 10px; /* Adjust the distance from the left */
+    z-index: 999; /* Ensure it's above other elements */
+}

@@ -16,6 +16,9 @@ document.addEventListener("DOMContentLoaded", function() {
             userScoreElement.style.color = "yellow";
         })
         .catch(error => console.error('Error fetching user data:', error));
+        document.getElementById('go-back-btn').addEventListener('click', () => {
+                  window.location.href = '/home';
+                });
 });
 
 function toggleMenu() {

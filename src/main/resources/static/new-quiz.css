@@ -160,3 +160,10 @@ button:hover {
     border: 1px solid red; /* Red outline for incorrect answer */
     padding: 5px;
 }
+#go-back-btn {
+    position: fixed;
+    bottom: 10px; /* Adjust the distance from the bottom */
+    left: 10px; /* Adjust the distance from the left */
+    z-index: 999; /* Ensure it's above other elements */
+    width: 30%;
+}

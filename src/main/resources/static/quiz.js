@@ -15,6 +15,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 userScoreElement.style.color = "yellow";
             })
             .catch(error => console.error('Error fetching user data:', error));
+            document.getElementById('go-back-btn').addEventListener('click', () => {
+                              window.location.href = '/home';
+                            });
 
     console.log("Document loaded");
     // Extract the quiz ID from the URL

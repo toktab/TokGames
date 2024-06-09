@@ -1,4 +1,3 @@
-/* Existing CSS */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -53,18 +52,13 @@ header {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.quizzes-heading {
-    margin-left: 20px; /* Added 'px' unit for margin */
+.home-heading {
+    margin-left: 20px;
     color: yellow;
     text-shadow: -1px -1px 0 #000,
-                  1px -1px 0 #000,
-                 -1px  1px 0 #000,
-                  1px  1px 0 #000; /* Added text outline with black color */
-}
-.menu ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+                1px -1px 0 #000,
+                -1px  1px 0 #000,
+                 1px  1px 0 #000;
 }
 .menu ul li {
     margin-bottom: 5px;
@@ -76,6 +70,28 @@ header {
 .menu ul li a:hover {
     background-color: #eee; /* Darken the background color */
 }
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  padding: 10px; /* Add some padding to increase clickable area */
+}
+
+.menu a {
+  display: block; /* Make a elements block-level */
+  text-decoration: none;
+  color: #333;
+  padding: 10px; /* Add some padding to increase clickable area */
+}
+
+.menu a:hover {
+  background-color: #f7f7f7;
+}
+
 .search-container {
     text-align: center;
     margin-top: 20px;
@@ -186,4 +202,10 @@ header {
 .new-quiz-btn:hover {
     background-color: #7CB342; /* Darken the background color on hover */
     transform: scale(1.1); /* Scale up slightly on hover */
+}
+#go-back-btn {
+    position: fixed;
+    bottom: 10px; /* Adjust the distance from the bottom */
+    left: 10px; /* Adjust the distance from the left */
+    z-index: 999; /* Ensure it's above other elements */
 }

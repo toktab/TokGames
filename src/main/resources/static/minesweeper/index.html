@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="minesweeper.css">
+    <script src="minesweeper.js" defer></script>
+</head>
+
+<body>
+<button id="go-back-button">Go Back</button>
+
+<div id="user-id"></div>
+
+    <header>
+        <div class="user-info">
+            <div class="user-info-left"> <!-- Added a container div -->
+                <span id="user-name"></span>
+                <img id="user-photo" class="user-photo" src="" alt="User Photo">
+            </div>
+            <div id="user-score"></div>
+        </div>
+    </header>
+
+    <div id="difficulty-container"></div>
+    <div id="top-bar">
+        <h1>Mines: <span id="mines-count">0</span></h1>
+        <div id="score-counter">Total user score: 0</div>
+    </div>
+    <div id="board"></div>
+    <br>
+    <button id="flag-button">🚩</button>
+    <button id="restart-button">Restart</button>
+    <div id="final-score"></div>
+<!--    <button id="go-back-button" onclick="window.location.href='http://localhost:8080/home'">Go Back</button>-->
+    <button id="mode-toggle" onclick="toggleMode()">Dark Mode</button>
+</body>
+</html>

@@ -71,9 +71,9 @@ public class HomeController {
         return "redirect:/scoreboard.html";
     }
 
-    @GetMapping("/about_us")
+    @GetMapping("/about")
     public String aboutUs() {
-        return "redirect:about_us.html";
+        return "redirect:/about_us.html";
     }
     @PostMapping("/new-quiz")
     public ResponseEntity<Quiz> createQuiz(@RequestBody Quiz quiz) {
