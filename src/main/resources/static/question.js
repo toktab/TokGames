@@ -1,4 +1,5 @@
 let currentUser = null;
+let quizId = null;
 
 document.addEventListener("DOMContentLoaded", function() {
     fetch('http://localhost:8080/api/users/current')
@@ -28,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Extract the quiz ID from the URL
     const pathSegments = window.location.pathname.split('/');
     console.log("Path segments:", pathSegments);
-    const quizId = pathSegments[pathSegments.length - 1];
+    quizId = pathSegments[pathSegments.length - 1];
     console.log("Extracted quiz ID:", quizId);
 
     if (quizId) {
@@ -192,6 +193,43 @@ function submitAnswers() {
             console.warn(`Incorrect answer or difficulty missing for: ${answerOption.innerText}`);
         }
     });
+
+    if (currentUser) {
+        // Update user score
+        const updatedUser = { ...currentUser, score: currentUser.score + score };
+        fetch(`http://localhost:8080/api/users/score/${currentUser.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedUser),
+        })
+        .then(response => response.json())
+        .then(updatedUserData => {
+            console.log('User score updated:', updatedUserData);
+        })
+        .catch(error => console.error('Error updating user score:', error));
+
+        // Create new quiz participant
+        const quizParticipant = {
+            score: score,
+            attempt: 1, // Assuming first attempt; you might need to handle attempts differently
+            quiz_id: parseInt(quizId), // Use the global quizId variable
+            user_id: currentUser.id
+        };
+        fetch('http://localhost:8080/api/quiz-participants', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(quizParticipant),
+        })
+        .then(response => response.json())
+        .then(newQuizParticipantData => {
+            console.log('Quiz participant created:', newQuizParticipantData);
+        })
+        .catch(error => console.error('Error creating quiz participant:', error));
+    }
 
     // Display total score in an alert
     alert(`Total Score: ${score}`);
