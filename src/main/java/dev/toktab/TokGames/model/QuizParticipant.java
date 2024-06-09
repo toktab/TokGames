@@ -14,7 +14,6 @@ public class QuizParticipant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int score;
-    private int attempt;
 
     @Column(nullable = false)
     private Long quiz_id;

@@ -10,12 +10,12 @@ document.addEventListener("DOMContentLoaded", function() {
             return response.json();
         })
        .then(data => {
-            console.log("Received user data:", data); // Log received user data
-            currentUser = data; // Store the current user data in the global variable
+            console.log("Received user data:", data);
+            currentUser = data;
 
             // Update HTML elements with user data
             document.getElementById('user-id').innerText = "User ID: " + data.id;
-            document.getElementById('user-name').innerText = "Hello, " + data.username; // Update user name
+            document.getElementById('user-name').innerText = "Hello, " + data.username;
             document.getElementById('user-photo').src = data.photo;
 
             // Update user score with yellow color
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
        .catch(error => console.error('Error fetching user data:', error));
 
     console.log("Document loaded");
-    // Extract the quiz ID from the URL
+
     const pathSegments = window.location.pathname.split('/');
     console.log("Path segments:", pathSegments);
     quizId = pathSegments[pathSegments.length - 1];
@@ -61,15 +61,13 @@ function fetchQuestionsByQuizId(quizId) {
 
 function displayQuestions(questions) {
     const questionContainer = document.getElementById('question-info');
-    questionContainer.innerHTML = ''; // Clear existing content
+    questionContainer.innerHTML = '';
 
     if (questions.length > 0) {
         questions.forEach((question, index) => {
-            // Create a new div for each question
             const questionDiv = document.createElement('div');
             questionDiv.classList.add('question-item');
 
-            // Create and populate HTML elements with question data
             questionDiv.innerHTML = `
                 <h3 style="color: yellow; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">Question ${index + 1}</h3>
                 <p><strong>Title:</strong> ${question.title}</p>
@@ -77,46 +75,38 @@ function displayQuestions(questions) {
                 <p><strong>Difficulty:</strong> ${question.difficulty}</p>
             `;
 
-            // Create a new div for answer options
             const answerOptionsDiv = document.createElement('div');
             answerOptionsDiv.classList.add('answer-options');
 
-            // Split incorrect answers into an array
             const incorrectAnswers = question.incorrect.split(';');
             const correctAnswer = question.correct;
 
-            // Shuffle the incorrect answers and add the correct answer
             const answerOptions = [...incorrectAnswers.slice(0, 3), correctAnswer];
             for (let i = answerOptions.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [answerOptions[i], answerOptions[j]] = [answerOptions[j], answerOptions[i]];
             }
 
-            // Create and populate HTML elements with answer options
             answerOptions.forEach((answer, index) => {
                 const answerOptionDiv = document.createElement('div');
                 answerOptionDiv.classList.add('answer-option');
                 if (answer === correctAnswer) {
-                    answerOptionDiv.innerText = `${index + 1}. ${answer} (correct)`; // Add "(correct)" to the correct answer
+                    answerOptionDiv.innerText = `${index + 1}. ${answer} (correct)`;
                 } else {
                     answerOptionDiv.innerText = `${index + 1}. ${answer}`;
                 }
                 answerOptionDiv.dataset.correct = answer === correctAnswer;
-                answerOptionDiv.dataset.difficulty = question.difficulty; // Add difficulty as a data attribute
+                answerOptionDiv.dataset.difficulty = question.difficulty;
                 answerOptionDiv.addEventListener('click', function() {
                     selectAnswer(this);
                 });
                 answerOptionsDiv.appendChild(answerOptionDiv);
             });
 
-            // Add answer options to question div
             questionDiv.appendChild(answerOptionsDiv);
-
-            // Add question div to question container
             questionContainer.appendChild(questionDiv);
         });
 
-        // Create submit button
         const submitButton = document.createElement('button');
         submitButton.textContent = 'Submit';
         submitButton.id = 'submit-button';
@@ -195,7 +185,6 @@ function submitAnswers() {
     });
 
     if (currentUser) {
-        // Update user score
         const updatedUser = { ...currentUser, score: currentUser.score + score };
         fetch(`http://localhost:8080/api/users/score/${currentUser.id}`, {
             method: 'PUT',
@@ -210,11 +199,9 @@ function submitAnswers() {
         })
         .catch(error => console.error('Error updating user score:', error));
 
-        // Create new quiz participant
         const quizParticipant = {
             score: score,
-            attempt: 1, // Assuming first attempt; you might need to handle attempts differently
-            quiz_id: parseInt(quizId), // Use the global quizId variable
+            quiz_id: parseInt(quizId),
             user_id: currentUser.id
         };
         fetch('http://localhost:8080/api/quiz-participants', {
@@ -227,10 +214,26 @@ function submitAnswers() {
         .then(response => response.json())
         .then(newQuizParticipantData => {
             console.log('Quiz participant created:', newQuizParticipantData);
+            displayScore(score);
         })
         .catch(error => console.error('Error creating quiz participant:', error));
     }
+}
 
-    // Display total score in an alert
-    alert(`Total Score: ${score}`);
+function displayScore(score) {
+    const questionContainer = document.getElementById('question-info');
+    questionContainer.innerHTML = '';
+
+    const scoreDiv = document.createElement('div');
+    scoreDiv.classList.add('score');
+    scoreDiv.innerHTML = `<h2>Your Score: ${score}</h2>`;
+
+    const backButton = document.createElement('button');
+    backButton.textContent = 'Go Back';
+    backButton.addEventListener('click', () => {
+        window.location.href = 'http://localhost:8080'; // Redirect to home page
+    });
+
+    scoreDiv.appendChild(backButton);
+    questionContainer.appendChild(scoreDiv);
 }

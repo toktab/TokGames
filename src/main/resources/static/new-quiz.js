@@ -133,8 +133,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(createdQuestions => {
             console.log('Created Questions:', createdQuestions);
-            const urlTitle = encodeURIComponent(title);
-            window.location.href = `/${urlTitle}/questions`;
+            window.location.href = `http://localhost:8080/quizzes.html`; // Redirect to quizzes.html
         })
         .catch(error => {
             console.error('Error:', error);

@@ -43,7 +43,6 @@ public class QuizParticipantController {
 
         QuizParticipant existingQuizParticipant = existingQuizParticipantOptional.get();
         existingQuizParticipant.setScore(updatedQuizParticipant.getScore());
-        existingQuizParticipant.setAttempt(updatedQuizParticipant.getAttempt());
         existingQuizParticipant.setQuiz_id(updatedQuizParticipant.getQuiz_id());
         existingQuizParticipant.setUser_id(updatedQuizParticipant.getUser_id());
 
