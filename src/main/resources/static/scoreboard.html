@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scoreboard</title>
+    <link rel="stylesheet" href="scoreboard.css">
+</head>
+<body>
+<button id="go-back-btn" class="btn btn-secondary">Go Back</button>
+<div class="container">
+    <div class="left-side">
+        <div class="user-info">
+            <label for="username">Username:</label>
+            <span id="username"></span>
+
+            <label for="name">Name:</label>
+            <span id="name"></span>
+
+            <label for="lastname">Last Name:</label>
+            <span id="lastname"></span>
+
+            <label for="mail">Email:</label>
+            <span id="mail"></span>
+
+            <label for="createdOn">Created On:</label>
+            <span id="createdOn"></span>
+
+            <label for="score">Score:</label>
+            <span id="score"></span>
+
+            <img id="photo" src="" alt="User Photo">
+        </div>
+    </div>
+
+    <div class="right-side">
+        <div class="scoreboard">
+            <div class="scoreboard-header">
+                <h3>Global Scoreboard</h3>
+            </div>
+
+            <div class="scoreboard-list" id="scoreboard-list">
+            </div>
+        </div>
+    </div>
+
+    <script src="scoreboard.js"></script>
+</div>
+</body>
+</html>

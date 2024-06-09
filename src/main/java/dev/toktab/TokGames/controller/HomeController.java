@@ -68,7 +68,7 @@ public class HomeController {
 
     @GetMapping("/scoreboard")
     public String scoreboard() {
-        return "redirect:scoreboard.html";
+        return "redirect:/scoreboard.html";
     }
 
     @GetMapping("/about_us")
