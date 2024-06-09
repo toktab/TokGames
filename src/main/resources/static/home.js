@@ -19,6 +19,11 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function toggleMenu() {
-    var menu = document.getElementById("menu");
-    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+  var menu = document.getElementById("menu");
+  menu.style.display = (menu.style.display === "block")? "none" : "block";
+  document.addEventListener("click", function(event) {
+    if (!event.target.closest("#menu") &&!event.target.closest(".menu-btn")) {
+      menu.style.display = "none";
+    }
+  });
 }

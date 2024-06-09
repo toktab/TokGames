@@ -1,0 +1,141 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.left-side {
+    width: 300px;
+    margin-right: 40px;
+}
+
+.right-side {
+    width: 400px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user-info label {
+    font-weight: bold;
+}
+
+.user-info span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.user-info img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.scoreboard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.scoreboard-header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.scoreboard-header h3 {
+    margin: 0;
+}
+
+.scoreboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.scoreboard-item {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.scoreboard-item span {
+    font-size: 14px;
+    font-weight: bold;
+}
+.scoreboard-item span:nth-child(2) {
+    color: yellow;
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+}
+.scoreboard-item.current-user {
+    background-color: #ffffcc; /* light yellow background */
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.scoreboard-item.current-user span {
+    font-weight: bold;
+}
+/* Add this CSS to your stylesheet */
+.btn {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  background-color: #f7f7f7;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #eee;
+}
+
+.btn-secondary {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: #3e8e41;
+}
+#go-back-btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+#go-back-btn:hover {
+  background-color: #3e8e41;
+}
+#score {
+  color: yellow;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+}
