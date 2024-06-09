@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions</title>
+    <link rel="stylesheet" href="/question.css">
+</head>
+<body>
+
+<div id="user-id"></div>
+
+<header>
+    <div class="user-info">
+        <div class="user-info-left"> <!-- Added a container div -->
+            <span id="user-name"></span>
+            <img id="user-photo" class="user-photo" src="" alt="User Photo">
+        </div>
+        <div id="user-score"></div>
+    </div>
+</header>
+<div class="container">
+    <h1>Questions</h1>
+    <div id="question-info">
+        <p><strong>Question ID:</strong> <span id="question-id"></span></p>
+        <p><strong>Title:</strong> <span id="question-title"></span></p>
+        <p><strong>Photo:</strong> <img id="question-photo" src=""></p>
+        <p><strong>QuizID:</strong> <span id="quiz-id"></span></p>
+        <p><strong>Difficulty:</strong> <span id="difficulty"></span></p>
+        <p><strong>Correct:</strong> <span id="correct"></span></p>
+        <p><strong>Incorrect:</strong> <span id="incorrect"></span></p>
+        <p><strong>Created On:</strong> <span id="quiz-created-on"></span></p>
+    </div>
+    <div id="error-message" style="color: red;"></div> <!-- Error message element -->
+</div>
+<script src="/question.js"></script>
+</body>
+</html>

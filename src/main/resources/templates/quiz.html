@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Information</title>
+    <link rel="stylesheet" href="/quiz.css">
+</head>
+<body>
+<div id="user-id"></div>
+
+<header>
+    <div class="user-info">
+        <div class="user-info-left"> <!-- Added a container div -->
+            <span id="user-name"></span>
+            <img id="user-photo" class="user-photo" src="" alt="User Photo">
+        </div>
+        <div id="user-score"></div>
+    </div>
+</header>
+<div class="container">
+    <h1>Quiz Information</h1>
+    <div id="quiz-info">
+        <p><strong>Quiz ID:</strong> <span id="quiz-id"></span></p>
+        <p><strong>Title:</strong> <span id="quiz-title"></span></p>
+        <p><strong>Description:</strong> <span id="quiz-description"></span></p>
+        <p><strong>Created On:</strong> <span id="quiz-created-on"></span></p>
+        <p><strong>Creator ID:</strong> <span id="quiz-creator-id"></span></p>
+        <p><strong>Creator Username:</strong> <span id="quiz-creator-username"></span></p>
+        <p><strong>Creator Photo:</strong> <img id="quiz-creator-photo" src="" alt="Creator Photo"></p>
+        <p><strong>Question Amount:</strong> <span id="quiz-question-amount"></span></p>
+    </div>
+</div>
+<script src="/quiz.js"></script> <!-- Ensure this path is correct -->
+</body>
+</html>

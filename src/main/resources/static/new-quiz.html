@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Quiz Topic</title>
+    <link rel="stylesheet" href="new-quiz.css">
+</head>
+<body>
+<header>
+    <div class="user-info">
+        <div class="user-info-left">
+            <div id="user-id"></div>
+            <span id="user-name"></span>
+            <img id="user-photo" class="user-photo" src="" alt="User Photo">
+        </div>
+        <div id="user-score"></div>
+    </div>
+</header>
+
+<div>
+    <h1>Create a Quiz</h1>
+    <div>
+        <label for="title">Quiz Title:</label>
+        <input type="text" id="title" name="title" required>
+    </div>
+    <div>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+    </div>
+    <div>
+        <label for="photoURL">Photo URL:</label>
+        <input type="url" id="photoURL" name="photoURL" required>
+    </div>
+    <div>
+        <label for="numQuestions">Number of Questions:</label>
+        <input type="number" id="numQuestions" name="numQuestions" min="1" required>
+    </div>
+    <div id="questionList"></div>
+    <button id="continueButton">Create Quiz</button>
+</div>
+
+<script src="new-quiz.js"></script>
+</body>
+</html>

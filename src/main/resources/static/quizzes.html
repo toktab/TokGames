@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzes</title>
+    <link rel="stylesheet" href="quizzes.css">
+</head>
+<body>
+
+<div id="user-id"></div>
+
+<header>
+    <div class="user-info">
+        <div class="user-info-left"> <!-- Added a container div -->
+            <span id="user-name"></span>
+            <img id="user-photo" class="user-photo" src="" alt="User Photo">
+        </div>
+        <div id="user-score"></div>
+    </div>
+    <button class="menu-btn" onclick="toggleMenu()">Menu</button> <!-- Add onclick event -->
+</header>
+
+<div class="menu" id="menu">
+    <ul>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/settings">Settings</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="/scoreboard">Scoreboard</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</div>
+
+<div class="search-container">
+    <a href="#" class="search-icon">&#128269;</a>
+    <input type="text" class="search-input" placeholder="Search...">
+</div>
+
+<!-- Add the text "Quizzes created by users" here -->
+<div class="quizzes-heading">
+    <h2>Quizzes created by users</h2>
+</div>
+
+<div class="quiz-container">
+    <!-- Quiz items will be dynamically added here -->
+</div>
+
+<!-- New quiz button -->
+<a href="/new-quiz" class="new-quiz-btn" title="Create Your Quiz">+</a>
+
+<script src="quizzes.js"></script>
+
+</body>
+</html>

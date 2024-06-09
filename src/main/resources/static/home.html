@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+<div id="user-id"></div>
+
+<header>
+    <div class="user-info">
+        <div class="user-info-left"> <!-- Added a container div -->
+            <span id="user-name"></span>
+            <img id="user-photo" class="user-photo" src="" alt="User Photo">
+        </div>
+        <div id="user-score"></div>
+    </div>
+    <button class="menu-btn" onclick="toggleMenu()">Menu</button> <!-- Add onclick event -->
+</header>
+
+<div class="menu" id="menu">
+    <ul>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/settings">Settings</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="/scoreboard">Scoreboard</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</div>
+
+<div class="search-container">
+    <a href="#" class="search-icon">&#128269;</a>
+    <input type="text" class="search-input" placeholder="Search...">
+</div>
+
+<div class="home-heading">
+    <h2>All MiniGames</h2>
+</div>
+
+<div class="mini-games-container">
+    <button class="quiz-square quiz-title" onclick="location.href='/quizzes'">Quiz</button>
+    <button class="quiz-square minesweeper-title" onclick="location.href='/minesweeper'">Minesweeper</button>
+    <button class="quiz-square snakegame-title" onclick="location.href='/snakegame'">SnakeGame</button>
+</div>
+
+<script src="home.js"></script>
+
+</body>
+</html>
