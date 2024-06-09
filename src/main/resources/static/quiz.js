@@ -28,6 +28,11 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         console.error("Quiz ID not found in the URL");
     }
+
+    const startQuizBtn = document.getElementById('start-quiz-btn');
+    startQuizBtn.addEventListener('click', function() {
+        window.location.href = `http://localhost:8080/question/${quizId}`;
+    });
 });
 
 function fetchQuizData(quizId) {
@@ -49,6 +54,7 @@ function fetchQuizData(quizId) {
             console.error("There was a problem with the fetch operation:", error);
         });
 }
+
 function fetchCreatorDetails(creatorId) {
     fetch(`http://localhost:8080/api/users/${creatorId}`)
         .then(response => {
