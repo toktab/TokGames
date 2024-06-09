@@ -22,6 +22,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/register/**").permitAll()
                         .requestMatchers("/api/**").permitAll() // Make all API endpoints publicly accessible
                         .requestMatchers("/home").permitAll() // Allow access to /home for everyone
                         .requestMatchers("/profile", "/settings", "/privacy", "/scoreboard", "/about_us").authenticated() // Require authentication for these endpoints
@@ -31,7 +32,6 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
-
     @Bean
     public UserDetailsService userDetailsService() {
         return new UserInfoUserDetailsService();

@@ -26,7 +26,7 @@ public class User {
     private String password;
 
     private String photo;
-    private Type type;
+    private Type type = Type.USER;
     private int score;
     private Long record;
     private boolean isActive = true;
@@ -38,4 +38,21 @@ public class User {
     @Column(nullable = false)
     @UpdateTimestamp
     private Timestamp updatedOn;
+
+    // Getters and setters for the new fields
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 }

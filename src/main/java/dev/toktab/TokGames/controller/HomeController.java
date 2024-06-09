@@ -43,6 +43,10 @@ public class HomeController {
     public String newQuiz() {
         return "redirect:/new-quiz.html";
     }
+    @GetMapping("/register")
+    public String register() {
+        return "redirect:/register.html";
+    }
     @GetMapping("/quizzes")
     public String quiz() {
         return "redirect:/quizzes.html";
