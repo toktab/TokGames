@@ -1,8 +1,16 @@
+let currentUser = null;
+
 document.addEventListener("DOMContentLoaded", function() {
     fetch('http://localhost:8080/api/users/current')
-       .then(response => response.json())
+       .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok: " + response.statusText);
+            }
+            return response.json();
+        })
        .then(data => {
             console.log("Received user data:", data); // Log received user data
+            currentUser = data; // Store the current user data in the global variable
 
             // Update HTML elements with user data
             document.getElementById('user-id').innerText = "User ID: " + data.id;
@@ -37,7 +45,7 @@ function fetchQuestionsByQuizId(quizId) {
     fetch(apiUrl)
        .then(response => {
             if (!response.ok) {
-                throw new Error("Network response was not ok " + response.statusText);
+                throw new Error("Network response was not ok: " + response.statusText);
             }
             return response.json();
         })
@@ -87,8 +95,13 @@ function displayQuestions(questions) {
             answerOptions.forEach((answer, index) => {
                 const answerOptionDiv = document.createElement('div');
                 answerOptionDiv.classList.add('answer-option');
-                answerOptionDiv.innerText = `${index + 1}. ${answer}`;
+                if (answer === correctAnswer) {
+                    answerOptionDiv.innerText = `${index + 1}. ${answer} (correct)`; // Add "(correct)" to the correct answer
+                } else {
+                    answerOptionDiv.innerText = `${index + 1}. ${answer}`;
+                }
                 answerOptionDiv.dataset.correct = answer === correctAnswer;
+                answerOptionDiv.dataset.difficulty = question.difficulty; // Add difficulty as a data attribute
                 answerOptionDiv.addEventListener('click', function() {
                     selectAnswer(this);
                 });
@@ -123,9 +136,63 @@ function selectAnswer(answerOption) {
         answerOptions[i].classList.remove('selected');
     }
     answerOption.classList.add('selected');
+
+    if (answerOption.dataset.correct === "true") {
+        const difficulty = answerOption.dataset.difficulty.toLowerCase();
+        let points = 0;
+        switch (difficulty) {
+            case 'easy':
+                points = 50;
+                break;
+            case 'normal':
+                points = 100;
+                break;
+            case 'hard':
+                points = 150;
+                break;
+            case 'extreme':
+                points = 250;
+                break;
+            default:
+                console.warn("Unknown difficulty level:", difficulty);
+        }
+        console.log(`Correct answer selected! Points: ${points}`);
+    }
 }
 
 function submitAnswers() {
-    // TO DO: implement submit logic here
-    alert('Submit button clicked!');
+    const selectedAnswers = document.querySelectorAll('.answer-option.selected');
+    let score = 0;
+
+    selectedAnswers.forEach(answerOption => {
+        const isCorrect = answerOption.dataset.correct === "true";
+        const difficulty = answerOption.dataset.difficulty ? answerOption.dataset.difficulty.toLowerCase() : null;
+
+        console.log(`Selected answer: ${answerOption.innerText}, Correct: ${isCorrect}, Difficulty: ${difficulty}`);
+
+        if (isCorrect && difficulty) {
+            switch (difficulty) {
+                case 'easy':
+                    score += 50;
+                    break;
+                case 'normal':
+                    score += 100;
+                    break;
+                case 'hard':
+                    score += 150;
+                    break;
+                case 'extreme':
+                    score += 250;
+                    break;
+                default:
+                    console.warn("Unknown difficulty level:", difficulty);
+            }
+            console.log(`Added points for ${difficulty} question. Current score: ${score}`);
+        } else {
+            console.warn(`Incorrect answer or difficulty missing for: ${answerOption.innerText}`);
+        }
+    });
+
+    // Display total score in an alert
+    alert(`Total Score: ${score}`);
 }
