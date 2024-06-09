@@ -202,3 +202,48 @@ header {
     justify-content: center;
     margin-top: 20px;
 }
+#question-answers {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.answer-option {
+    background-color: #f7f7f7;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.answer-option:hover {
+    background-color: #eee;
+}
+
+.answer-option.selected {
+    background-color: #ddd;
+}
+
+.answer-option.correct {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.answer-option.incorrect {
+    background-color: #f44336;
+    color: #fff;
+}
+.selected {
+        background-color: #ccc;
+        border: 1px solid #aaa;
+    }
+    #question-info {
+        position: relative;
+    }
+    #submit-button {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
