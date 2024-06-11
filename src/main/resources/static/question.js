@@ -2,7 +2,7 @@ let currentUser = null;
 let quizId = null;
 
 document.addEventListener("DOMContentLoaded", function() {
-    fetch('http://localhost:8080/api/users/current')
+    fetch('https://tokgames.cleverapps.io/api/users/current')
        .then(response => {
             if (!response.ok) {
                 throw new Error("Network response was not ok: " + response.statusText);
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function fetchQuestionsByQuizId(quizId) {
-    const apiUrl = `http://localhost:8080/api/questions/${quizId}/questions`;
+    const apiUrl = `https://tokgames.cleverapps.io/api/questions/${quizId}/questions`;
     console.log("Fetching data from API:", apiUrl);
 
     fetch(apiUrl)
@@ -186,7 +186,7 @@ function submitAnswers() {
 
     if (currentUser) {
         const updatedUser = { ...currentUser, score: currentUser.score + score };
-        fetch(`http://localhost:8080/api/users/score/${currentUser.id}`, {
+        fetch(`https://tokgames.cleverapps.io/api/users/score/${currentUser.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -204,7 +204,7 @@ function submitAnswers() {
             quiz_id: parseInt(quizId),
             user_id: currentUser.id
         };
-        fetch('http://localhost:8080/api/quiz-participants', {
+        fetch('https://tokgames.cleverapps.io/api/quiz-participants', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -231,7 +231,7 @@ function displayScore(score) {
     const backButton = document.createElement('button');
     backButton.textContent = 'Go Back';
     backButton.addEventListener('click', () => {
-        window.location.href = 'http://localhost:8080'; // Redirect to home page
+        window.location.href = 'https://tokgames.cleverapps.io'; // Redirect to home page
     });
 
     scoreDiv.appendChild(backButton);
