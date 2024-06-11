@@ -91,7 +91,7 @@ function displayQuestions(questions) {
                 const answerOptionDiv = document.createElement('div');
                 answerOptionDiv.classList.add('answer-option');
                 if (answer === correctAnswer) {
-                    answerOptionDiv.innerText = `${index + 1}. ${answer} (correct)`;
+                    answerOptionDiv.innerText = `${index + 1}. ${answer}`;
                 } else {
                     answerOptionDiv.innerText = `${index + 1}. ${answer}`;
                 }
