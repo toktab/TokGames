@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let currentUser;
 
     // Fetch current authenticated user data
-    fetch('https://tokgames.cleverapps.io/api/users/current')
+    fetch('/api/users/current')
         .then(response => response.json())
         .then(data => {
             currentUser = data;
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
 
-        fetch('https://tokgames.cleverapps.io/api/quizzes', {
+        fetch('/api/quizzes', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const questionPromises = questions.map(question => {
                 question.quizId = quizId; // Set the quizId for each question
-                return fetch('https://tokgames.cleverapps.io/api/questions', {
+                return fetch('/api/questions', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(createdQuestions => {
             console.log('Created Questions:', createdQuestions);
-            window.location.href = `https://tokgames.cleverapps.io/quizzes.html`; // Redirect to quizzes.html
+            window.location.href = `/quizzes.html`; // Redirect to quizzes.html
         })
         .catch(error => {
             console.error('Error:', error);

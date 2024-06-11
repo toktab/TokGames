@@ -1,7 +1,7 @@
 let userData;
 document.addEventListener("DOMContentLoaded", function() {
     // Fetch current authenticated user data
-    fetch('https://tokgames.cleverapps.io/api/users/current')
+    fetch('/api/users/current')
        .then(response => response.json())
        .then(data => {
             console.log("Received user data:", data); // Log received user data
@@ -278,7 +278,7 @@ function displayFinalScore() {
     // userScoreElement.innerText = "Score: " + newScore;
 
     // Send a PUT request to update the user score in the database
-    fetch(`https://tokgames.cleverapps.io/api/users/score/${userData.id}`, {
+    fetch(`/api/users/score/${userData.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
