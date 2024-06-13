@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    fetch('http://tokgames.cleverapps.io/api/users/current')
+    fetch('/api/users/current')
             .then(response => response.json())
             .then(data => {
                 console.log("Received user data:", data); // Log received user data
@@ -34,12 +34,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const startQuizBtn = document.getElementById('start-quiz-btn');
     startQuizBtn.addEventListener('click', function() {
-        window.location.href = `http://tokgames.cleverapps.io/question/${quizId}`;
+        window.location.href = `/question/${quizId}`;
     });
 });
 
 function fetchQuizData(quizId) {
-    const apiUrl = `http://tokgames.cleverapps.io/api/quizzes/${quizId}`;
+    const apiUrl = `/api/quizzes/${quizId}`;
     console.log("Fetching data from API:", apiUrl);
 
     fetch(apiUrl)
@@ -59,7 +59,7 @@ function fetchQuizData(quizId) {
 }
 
 function fetchCreatorDetails(creatorId) {
-    fetch(`http://tokgames.cleverapps.io/api/users/${creatorId}`)
+    fetch(`/api/users/${creatorId}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error("Network response was not ok " + response.statusText);

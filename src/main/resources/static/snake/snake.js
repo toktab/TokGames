@@ -1,7 +1,7 @@
 let userData;
 document.addEventListener("DOMContentLoaded", function() {
   // Fetch current authenticated user data
-  fetch('http://tokgames.cleverapps.io/api/users/current')
+  fetch('/api/users/current')
    .then(response => response.json())
    .then(data => {
           console.log("Received user data:", data); // Log received user data
