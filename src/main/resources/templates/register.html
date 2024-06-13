@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .form-container {
+            background-color: #fff;
+            width: 400px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #5e057e;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #5e057e;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #5e057e;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #299d00;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+        }
+
+        .success-message {
+            background-color: #5e057e;
+            color: #fff;
+            padding: 10px;
+            border-radius: 3px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h2>User Registration</h2>
+    <form th:action="@{/register}" method="post" role="form" th:object="${user}">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input th:field="*{name}" type="text" id="name" name="name" placeholder="Enter your Name" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input th:field="*{lastName}" type="text" id="lastName" name="lastName" placeholder="Enter your Last Name" required>
+        </div>
+        <div class="form-group">
+            <label for="mail">Mail:</label>
+            <input th:field="*{mail}" type="email" id="mail" name="mail" placeholder="Enter your Email" required>
+        </div>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input th:field="*{username}" type="text" id="username" name="username" placeholder="Enter your Username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input th:field="*{password}" type="password" id="password" name="password" placeholder="Enter your Password" required>
+        </div>
+        <div class="form-group">
+            <label for="photo">Photo:</label>
+            <input th:field="*{photo}" type="text" id="photo" name="photo" placeholder="Enter your Photo URL">
+        </div>
+        <button type="submit">Register</button>
+    </form>
+    <div th:if="${param.success}">
+        <div class="success-message">
+            <p>Registration Successful!</p>
+        </div>
+    </div>
+    <div th:if="${usernameExist}">
+        <span style="color: red;">Username is Taken</span>
+    </div>
+    <div class="form-footer">
+        <span>Already have an account? <a th:href="@{/login}">Login</a> here.</span>
+    </div>
+</div>
+</body>
+</html>
