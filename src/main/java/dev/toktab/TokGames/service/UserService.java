@@ -50,4 +50,18 @@ public class UserService {
     public void deleteUser(int id) {
         userRepository.deleteById(id);
     }
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username).orElse(null);
+    }
+
+    public User save(User user) {
+        User newUser = new User(
+                user.getName(),
+                user.getLastName(),
+                user.getMail(),
+                user.getUsername(),
+                passwordEncoder.encode(user.getPassword()
+                ), user.getPhoto(), user.getType(), user.getScore(), user.getRecord(), user.isActive());
+        return userRepository.save(newUser);
+    }
 }

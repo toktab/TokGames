@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -19,18 +20,30 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http.authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("/register/**").permitAll()
+//                        .requestMatchers("/api/**").permitAll() // Make all API endpoints publicly accessible
+//                        .requestMatchers("/home").permitAll() // Allow access to /home for everyone
+//                        .requestMatchers("/profile", "/settings", "/privacy", "/scoreboard", "/about_us").authenticated() // Require authentication for these endpoints
+//                        .anyRequest().authenticated())
+//                .httpBasic(withDefaults())
+//                .formLogin(withDefaults())
+//                .csrf(AbstractHttpConfigurer::disable);
+//        return http.build();
+//    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/register/**").permitAll()
-                        .requestMatchers("/api/**").permitAll() // Make all API endpoints publicly accessible
-                        .requestMatchers("/home").permitAll() // Allow access to /home for everyone
-                        .requestMatchers("/profile", "/settings", "/privacy", "/scoreboard", "/about_us").authenticated() // Require authentication for these endpoints
-                        .anyRequest().authenticated())
-                .httpBasic(withDefaults())
-                .formLogin(withDefaults())
-                .csrf(AbstractHttpConfigurer::disable);
+        http.csrf().disable().authorizeHttpRequests().requestMatchers("/register").permitAll().requestMatchers("home")
+                .permitAll().requestMatchers("/api/**").permitAll().and().formLogin().loginPage("/login").loginProcessingUrl("/login")
+                .defaultSuccessUrl("/home", true).permitAll().and().logout().invalidateHttpSession(true)
+                .clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout").permitAll();
+
         return http.build();
+
     }
     @Bean
     public UserDetailsService userDetailsService() {

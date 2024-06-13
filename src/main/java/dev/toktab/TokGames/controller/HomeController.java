@@ -34,18 +34,9 @@ public class HomeController {
     public String snake() {
         return "redirect:/snake/index.html";
     }
-
-    @GetMapping("/home")
-    public String redirect() {
-        return "redirect:/home.html";
-    }
     @GetMapping("/new-quiz")
     public String newQuiz() {
         return "redirect:/new-quiz.html";
-    }
-    @GetMapping("/register")
-    public String register() {
-        return "redirect:/register.html";
     }
     @GetMapping("/quizzes")
     public String quiz() {

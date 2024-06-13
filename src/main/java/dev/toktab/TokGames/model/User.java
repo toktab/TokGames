@@ -2,7 +2,7 @@ package dev.toktab.TokGames.model;
 
 import dev.toktab.TokGames.model.enums.Type;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -13,13 +13,13 @@ import java.sql.Timestamp;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String name;
     private String lastName;
     private String mail;
 
-    @Column(unique = true,nullable = false)
+    @Column(unique = true, nullable = false)
     private String username;
 
     @Column(nullable = false)
@@ -27,7 +27,7 @@ public class User {
 
     private String photo;
     private Type type = Type.USER;
-    private int score;
+    private int score = 0; // Default value is 0
     private Long record;
     private boolean isActive = true;
 
@@ -39,20 +39,18 @@ public class User {
     @UpdateTimestamp
     private Timestamp updatedOn;
 
-    // Getters and setters for the new fields
-    public String getLastName() {
-        return lastName;
-    }
+    public User() {} // Added no-arg constructor
 
-    public void setLastName(String lastName) {
+    public User(String name, String lastName, String mail, String username, String password, String photo, Type type, int score, Long record, boolean active) {
+        this.name = name;
         this.lastName = lastName;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
         this.mail = mail;
+        this.username = username;
+        this.password = password;
+        this.photo = photo;
+        this.type = type;
+        this.score = score;
+        this.record = record;
+        this.isActive = active;
     }
 }
