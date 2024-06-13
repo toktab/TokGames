@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Fetch current authenticated user data
-    fetch('http://localhost:8080/api/users/current')
+    fetch('http://tokgames.cleverapps.io/api/users/current')
         .then(response => response.json())
         .then(data => {
             console.log("Received user data:", data); // Log received user data
@@ -27,7 +27,7 @@ function toggleMenu() {
 }
 
 // Fetch quiz data and populate quiz squares
-fetch('http://localhost:8080/api/quizzes')
+fetch('http://tokgames.cleverapps.io/api/quizzes')
     .then(response => response.json())
     .then(data => {
         const quizContainer = document.querySelector('.quiz-container');
@@ -39,7 +39,7 @@ fetch('http://localhost:8080/api/quizzes')
                 <div class="quiz-name">${quiz.title}</div>
             `;
             quizSquare.addEventListener('click', () => {
-                window.location.href = `http://localhost:8080/quiz/${quiz.id}`;
+                window.location.href = `http://tokgames.cleverapps.io/quiz/${quiz.id}`;
             });
             quizContainer.appendChild(quizSquare);
         });
