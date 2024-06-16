@@ -23,8 +23,13 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String gotoHome(){
-        return "redirect:/home";
+    public String redirectToHomeOrRegister() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null && auth.isAuthenticated()) {
+            return "redirect:/home";
+        } else {
+            return "redirect:/register";
+        }
     }
     @GetMapping("/minesweeper")
     public String minesweeper() {

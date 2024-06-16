@@ -20,10 +20,26 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeHttpRequests().requestMatchers("/register").permitAll().requestMatchers("home")
-                .permitAll().requestMatchers("/api/**").permitAll().anyRequest().authenticated().and().formLogin(withDefaults());
+        http.csrf().disable()
+                .authorizeHttpRequests()
+                .requestMatchers("/register").permitAll()
+                .requestMatchers("/home").authenticated() // Require authentication for /home
+                .requestMatchers("/api/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin(withDefaults());
+
+        // Redirect configuration
+        http.formLogin()
+                .defaultSuccessUrl("/home", true) // Redirect to /home after successful login
+                .permitAll();
+
+        // Redirect unauthorized users to /register
+        http.exceptionHandling()
+                .authenticationEntryPoint((request, response, authException) -> response.sendRedirect("/register"));
 
         return http.build();
     }
@@ -35,7 +51,7 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setUserDetailsService(userDetailsService());//Custom
+        daoAuthenticationProvider.setUserDetailsService(userDetailsService());
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         return daoAuthenticationProvider;
     }
