@@ -54,14 +54,15 @@ public class UserService {
         return userRepository.findByUsername(username).orElse(null);
     }
 
-    public User save(User user) {
-        User newUser = new User(
-                user.getName(),
-                user.getLastName(),
-                user.getMail(),
-                user.getUsername(),
-                passwordEncoder.encode(user.getPassword()
-                ), user.getPhoto(), user.getType(), user.getScore(), user.getRecord(), user.isActive());
-        return userRepository.save(newUser);
+    public User save(User newUser) {
+        return userRepository.save(new User(newUser.getName(),
+                newUser.getLastName(),
+                newUser.getMail(),
+                newUser.getUsername(),
+                passwordEncoder.encode(newUser.getPassword()),
+                newUser.getPhoto(),
+                newUser.getType(),
+                0
+        ));
     }
 }

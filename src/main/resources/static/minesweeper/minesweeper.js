@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
        const goBackButton = document.getElementById('go-back-button');
            goBackButton.addEventListener('click', function() {
-               window.location.href = 'https://tokgames.cleverapps.io/home'; // Redirect to the home page
+               window.location.href = '/home'; // Redirect to the home page
            });
 });
 
@@ -137,7 +137,7 @@ function restartGame() {
 
 function setMines() {
     let minesLeft = minesCount;
-    while (minesLeft > 0) { 
+    while (minesLeft > 0) {
         let r = Math.floor(Math.random() * rows);
         let c = Math.floor(Math.random() * columns);
         let id = r.toString() + "-" + c.toString();
@@ -203,7 +203,7 @@ function revealMines() {
             let tile = board[r][c];
             if (minesLocation.includes(tile.id)) {
                 tile.innerText = "💣";
-                tile.style.backgroundColor = "red";                
+                tile.style.backgroundColor = "red";
             }
         }
     }

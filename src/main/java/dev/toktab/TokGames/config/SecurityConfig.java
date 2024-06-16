@@ -20,30 +20,28 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http.authorizeHttpRequests(auth -> auth
-//                        .requestMatchers("/register/**").permitAll()
-//                        .requestMatchers("/api/**").permitAll() // Make all API endpoints publicly accessible
-//                        .requestMatchers("/home").permitAll() // Allow access to /home for everyone
-//                        .requestMatchers("/profile", "/settings", "/privacy", "/scoreboard", "/about_us").authenticated() // Require authentication for these endpoints
-//                        .anyRequest().authenticated())
-//                .httpBasic(withDefaults())
-//                .formLogin(withDefaults())
-//                .csrf(AbstractHttpConfigurer::disable);
-//        return http.build();
-//    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeHttpRequests().requestMatchers("/register").permitAll().requestMatchers("home")
-                .permitAll().requestMatchers("/api/**").permitAll().and().formLogin().loginPage("/login").loginProcessingUrl("/login")
-                .defaultSuccessUrl("/home", true).permitAll().and().logout().invalidateHttpSession(true)
-                .clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout").permitAll();
+        http.csrf().disable()
+                .authorizeHttpRequests()
+                .requestMatchers("/register").permitAll()
+                .requestMatchers("/home").authenticated() // Require authentication for /home
+                .requestMatchers("/api/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin(withDefaults());
+
+        // Redirect configuration
+        http.formLogin()
+                .defaultSuccessUrl("/home", true) // Redirect to /home after successful login
+                .permitAll();
+
+        // Redirect unauthorized users to /register
+        http.exceptionHandling()
+                .authenticationEntryPoint((request, response, authException) -> response.sendRedirect("/register"));
 
         return http.build();
-
     }
     @Bean
     public UserDetailsService userDetailsService() {
@@ -53,7 +51,7 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setUserDetailsService(userDetailsService());//Custom
+        daoAuthenticationProvider.setUserDetailsService(userDetailsService());
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         return daoAuthenticationProvider;
     }

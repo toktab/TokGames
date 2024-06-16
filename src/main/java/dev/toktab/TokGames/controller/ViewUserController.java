@@ -32,20 +32,20 @@ public class ViewUserController {
     }
 
     @GetMapping("/login")
-    public String login(Model model, User user) {
+    public String login(Model model, User newUser) {
 
-        model.addAttribute("user", user);
+        model.addAttribute("user", newUser);
         return "login";
     }
 
     @GetMapping("/register")
-    public String register(Model model, User user) {
-        model.addAttribute("user", user);
+    public String register(Model model, User newUser) {
+        model.addAttribute("user", newUser);
         return "register";
     }
 
     @PostMapping("/register")
-    public String registerSave(@ModelAttribute("user") User newUser, Model model) {
+    public String registerSava(@ModelAttribute("user") User newUser, Model model) {
         User user = userService.findByUsername(newUser.getUsername());
         if (user != null) {
             model.addAttribute("Userexist", user);

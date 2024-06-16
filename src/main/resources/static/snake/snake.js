@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
    .catch(error => console.error('Error fetching user data:', error));
    const goBackButton = document.getElementById('go-back-button');
               goBackButton.addEventListener('click', function() {
-                  window.location.href = 'https://tokgames.cleverapps.io/home'; // Redirect to the home page
+                  window.location.href = '/home'; // Redirect to the home page
               });
 });
 
@@ -144,7 +144,7 @@ function changeDirection(e) {
             // Update the user score HTML element
             // userScoreElement.innerText = "Score: " + newScore;
 
-            fetch(`https://tokgames.cleverapps.io/api/users/score/${userData.id}`, {
+            fetch(`/api/users/score/${userData.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
